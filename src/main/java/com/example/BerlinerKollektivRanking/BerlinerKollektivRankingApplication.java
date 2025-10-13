@@ -9,7 +9,6 @@ import java.util.List;
 @SpringBootApplication
 public class BerlinerKollektivRankingApplication {
 
-	//test
 	public static List<Kollektiv> kollektivList;
 	List<Dj> djList = Arrays.asList();
 
