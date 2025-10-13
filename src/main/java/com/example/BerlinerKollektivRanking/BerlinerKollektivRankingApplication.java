@@ -10,7 +10,7 @@ import java.util.List;
 public class BerlinerKollektivRankingApplication {
 
 	public static List<Kollektiv> kollektivList;
-	List<Dj> djList = Arrays.asList();
+	public static List<Dj> djList;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BerlinerKollektivRankingApplication.class, args);

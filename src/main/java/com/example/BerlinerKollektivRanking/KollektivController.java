@@ -10,8 +10,10 @@ import java.util.List;
 
 @RestController
 public class KollektivController {
+
     @GetMapping("/kollektivs")
     public List<Kollektiv> getAllKollektivs() {
         return BerlinerKollektivRankingApplication.kollektivList;
     }
+
 }
