@@ -11,7 +11,9 @@ public class DjController {
 
     @GetMapping("/djs")
     public List<Dj> getAllDJs() {
-        return BerlinerKollektivRankingApplication.djList;
+        return List.of(
+                new Dj("DJ Example 1", "Techno", new Kollektiv("Kollektiv Example 1", "Techno", "Club Example 1"))
+        );
     }
 
 }
