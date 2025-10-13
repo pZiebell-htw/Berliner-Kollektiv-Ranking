@@ -6,7 +6,7 @@ public class Kollektiv {
 
     private String name;
     private String genre;
-    private List<DJ> residentDJs;
+    private List<Dj> residentDjs;
     private String residentClub;
 
     public Kollektiv(String name, String genre, String residentClub) {
@@ -27,12 +27,12 @@ public class Kollektiv {
         return genre;
     }
 
-    public List<DJ> getResidentDJs() {
-        return residentDJs;
+    public List<Dj> getResidentDJs() {
+        return residentDjs;
     }
 
-    public void setResidentDJs(List<DJ> residentDJs) {
-        this.residentDJs = residentDJs;
+    public void setResidentDJs(List<Dj> residentDjs) {
+        this.residentDjs = residentDjs;
     }
 
     public void setResidentClub(String residentClub) {
@@ -48,7 +48,7 @@ public class Kollektiv {
     }
 
 
-    public void addResidentDJ(DJ newDj) {
-        this.residentDJs.add(newDj);
+    public void addResidentDJ(Dj newDj) {
+        this.residentDjs.add(newDj);
     }
 }

@@ -1,12 +1,12 @@
 package com.example.BerlinerKollektivRanking;
 
-public class DJ {
+public class Dj {
     private String name;
     private String genre;
     private Kollektiv kollektiv;
 
 
-    public DJ(String name, String genre,Kollektiv kollektiv) {
+    public Dj(String name, String genre, Kollektiv kollektiv) {
         this.name = name;
         this.genre = genre;
         this.kollektiv = kollektiv;
