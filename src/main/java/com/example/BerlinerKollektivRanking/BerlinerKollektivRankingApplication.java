@@ -1,5 +1,9 @@
 package com.example.BerlinerKollektivRanking;
 
+import com.example.BerlinerKollektivRanking.Controller.DjController;
+import com.example.BerlinerKollektivRanking.Controller.KollektivController;
+import com.example.BerlinerKollektivRanking.Model.Dj;
+import com.example.BerlinerKollektivRanking.Model.Kollektiv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,23 +14,20 @@ import java.util.List;
 @SpringBootApplication
 public class BerlinerKollektivRankingApplication {
 
-	public static List<Kollektiv> kollektivList = new ArrayList<>();
-	public static List<Dj> djList = new ArrayList<>();
+	Kollektiv hakkeBerlin = new Kollektiv("HakkeBerlin", Kollektiv.Genre.Gabber);
+	Kollektiv pfandidos = new Kollektiv("Pfandidos", Kollektiv.Genre.Trance);
+	Kollektiv f90 = new Kollektiv("Formula90", Kollektiv.Genre.Trance);
+	Kollektiv passivAggresiv = new Kollektiv("PassivAggresiv", Kollektiv.Genre.Gabber);
+	Kollektiv goatball = new Kollektiv("Goatball", Kollektiv.Genre.Trance);
+	Kollektiv polyamor  = new Kollektiv("Polyamor", Kollektiv.Genre.Groove);
 
-	Kollektiv hakkeBerlin = new Kollektiv("HakkeBerlin", "Gabber/Hardcore",0.0);
-	Kollektiv pfandidos = new Kollektiv("Pfandidos", "Trance/Gabber",0.0);
-	Kollektiv f90 = new Kollektiv("Formula90", "Trance",3.9);
 	Dj bitschuBatschu = new Dj("BitschuBatschu", "Trance");
+
 
 	@GetMapping("/startpage")
 	public static void main(String[] args) {
+
 		SpringApplication.run(BerlinerKollektivRankingApplication.class, args);
-
-		DjController djController = new DjController();
-		KollektivController kollektivController = new KollektivController();
-
-		djController.getAllDJs();
-		kollektivController.getAllKollektivs();
 
 	}
 }

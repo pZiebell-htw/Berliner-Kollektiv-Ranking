@@ -1,24 +1,36 @@
-package com.example.BerlinerKollektivRanking;
+package com.example.BerlinerKollektivRanking.Model;
 
+import com.example.BerlinerKollektivRanking.BerlinerKollektivRankingApplication;
+import com.example.BerlinerKollektivRanking.Service.KollektivService;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Kollektiv {
 
+    public enum Genre{
+        Trance, Hardtrance, Techno, Hardtechno, Groove, House, Hardhouse,  Gabber, Hardcore, Hardstyle, Tekk, Hardtekk,
+    }
+
     private String name;
-    private String genre;
+    private Genre genre;
     private List<Dj> residentDjs;
     private String residentClub;
     private String description;
     private List<Integer> bewertungen;
     private double durchschnittsBewertung;
+    private String id;
 
 
-    public Kollektiv(String name, String genre, double durchschnittsBewertung) {
+    public Kollektiv(String name, Genre genre) {
+
         this.name = name;
         this.genre = genre;
         this.durchschnittsBewertung = durchschnittsBewertung;
 
-        BerlinerKollektivRankingApplication.kollektivList.add(this);
+        KollektivService.kollektivList.add(this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public List<Dj> getResidentDjs() {
@@ -61,7 +73,7 @@ public class Kollektiv {
         return residentClub;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
@@ -81,10 +93,17 @@ public class Kollektiv {
         this.name = name;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void addResidentDJ(Dj newDj) {
         this.residentDjs.add(newDj);
