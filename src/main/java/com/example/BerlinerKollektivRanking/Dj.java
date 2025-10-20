@@ -6,10 +6,12 @@ public class Dj {
     private Kollektiv kollektiv;
 
 
-    public Dj(String name, String genre, Kollektiv kollektiv) {
+    public Dj(String name, String genre) {
         this.name = name;
         this.genre = genre;
         this.kollektiv = kollektiv;
+
+        BerlinerKollektivRankingApplication.djList.add(this);
     }
 
     public String getName() {

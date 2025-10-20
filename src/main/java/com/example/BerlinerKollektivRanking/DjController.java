@@ -9,9 +9,14 @@ import java.util.List;
 @RestController
 public class DjController {
 
-    @GetMapping("/djs")
-    public List<Dj> getAllDJs() {
-        return BerlinerKollektivRankingApplication.djList;
-    }
+        @GetMapping("/djs")
+        public String getAllDJs() {
+            String allDjs = "";
 
+            for (Dj dj : BerlinerKollektivRankingApplication.djList) {
+                allDjs = allDjs + dj.getName() + " " + dj.getGenre() + "\n";
+            }
+
+            return allDjs;
+        }
 }

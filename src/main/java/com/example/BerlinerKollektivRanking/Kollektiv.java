@@ -8,12 +8,50 @@ public class Kollektiv {
     private String genre;
     private List<Dj> residentDjs;
     private String residentClub;
+    private String description;
+    private List<Integer> bewertungen;
+    private double durchschnittsBewertung;
 
-    public Kollektiv(String name, String genre, String residentClub) {
+
+    public Kollektiv(String name, String genre, double durchschnittsBewertung) {
         this.name = name;
         this.genre = genre;
+        this.durchschnittsBewertung = durchschnittsBewertung;
+
+        BerlinerKollektivRankingApplication.kollektivList.add(this);
     }
 
+    public List<Dj> getResidentDjs() {
+        return residentDjs;
+    }
+
+    public List<Integer> getBewertungen() {
+        return bewertungen;
+    }
+
+    public void setBewertungen(List<Integer> bewertungen) {
+        this.bewertungen = bewertungen;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setResidentDjs(List<Dj> residentDjs) {
+        this.residentDjs = residentDjs;
+    }
+
+    public double getDurchschnittsBewertung() {
+        return durchschnittsBewertung;
+    }
+
+    public void setDurchschnittsBewertung(double durchschnittsBewertung) {
+        this.durchschnittsBewertung = durchschnittsBewertung;
+    }
 
     public String getName() {
         return name;
@@ -50,5 +88,19 @@ public class Kollektiv {
 
     public void addResidentDJ(Dj newDj) {
         this.residentDjs.add(newDj);
+    }
+
+    public void addBewertung(int newBewertung) {
+        this.bewertungen.add(newBewertung);
+        setDurchschnittsBewertung(calculateDurchschnittBeweertung(bewertungen));
+    }
+
+    public double calculateDurchschnittBeweertung(List<Integer> bewertung) {
+        double gesamt = 0;
+        for (int i = 0; i < bewertung.size(); i++) {
+            gesamt += bewertung.get(i);
+        }
+
+        return gesamt / bewertung.size();
     }
 }
