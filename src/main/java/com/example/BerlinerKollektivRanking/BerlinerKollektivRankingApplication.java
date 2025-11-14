@@ -14,13 +14,6 @@ import java.util.List;
 @SpringBootApplication
 public class BerlinerKollektivRankingApplication {
 
-	Kollektiv hakkeBerlin = new Kollektiv("HakkeBerlin", Kollektiv.Genre.Gabber);
-	Kollektiv pfandidos = new Kollektiv("Pfandidos", Kollektiv.Genre.Trance);
-	Kollektiv f90 = new Kollektiv("Formula90", Kollektiv.Genre.Trance);
-	Kollektiv passivAggresiv = new Kollektiv("PassivAggresiv", Kollektiv.Genre.Gabber);
-	Kollektiv goatball = new Kollektiv("Goatball", Kollektiv.Genre.Trance);
-	Kollektiv polyamor  = new Kollektiv("Polyamor", Kollektiv.Genre.Groove);
-
 	Dj bitschuBatschu = new Dj("BitschuBatschu", "Trance");
 
 

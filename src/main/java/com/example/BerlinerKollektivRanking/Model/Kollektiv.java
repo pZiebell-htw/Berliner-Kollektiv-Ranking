@@ -1,6 +1,5 @@
 package com.example.BerlinerKollektivRanking.Model;
 
-import com.example.BerlinerKollektivRanking.BerlinerKollektivRankingApplication;
 import com.example.BerlinerKollektivRanking.Service.KollektivService;
 
 import java.util.ArrayList;
@@ -13,21 +12,27 @@ public class Kollektiv {
         Trance, Hardtrance, Techno, Hardtechno, Groove, House, Hardhouse,  Gabber, Hardcore, Hardstyle, Tekk, Hardtekk,
     }
 
+
     private String name;
     private Genre genre;
+    private String beschreibung;
     private List<Dj> residentDjs;
     private String residentClub;
     private String description;
     private List<Integer> bewertungen;
     private double durchschnittsBewertung;
     private String id;
+    private String bildUrl;
 
 
-    public Kollektiv(String name, Genre genre) {
+    public Kollektiv() {}
+
+    public Kollektiv(String name, Genre genre, String bildUrl, String beschreibung) {
 
         this.name = name;
         this.genre = genre;
-        this.durchschnittsBewertung = durchschnittsBewertung;
+        this.beschreibung = beschreibung;
+        this.bildUrl = bildUrl;
 
         KollektivService.kollektivList.add(this);
         this.id = UUID.randomUUID().toString();
@@ -107,6 +112,23 @@ public class Kollektiv {
 
     public void addResidentDJ(Dj newDj) {
         this.residentDjs.add(newDj);
+    }
+
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
+    }
+
+    public String getBildUrl() {
+        return bildUrl;
+    }
+
+    public void setBildUrl(String bildUrl) {
+        this.bildUrl = bildUrl;
     }
 
     public void addBewertung(int newBewertung) {
