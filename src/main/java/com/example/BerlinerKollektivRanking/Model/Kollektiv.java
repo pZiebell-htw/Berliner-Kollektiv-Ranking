@@ -1,10 +1,13 @@
 package com.example.BerlinerKollektivRanking.Model;
 
 import com.example.BerlinerKollektivRanking.Service.KollektivService;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 
 public class Kollektiv {
 
@@ -13,6 +16,8 @@ public class Kollektiv {
     }
 
 
+    private String id;
+
     private String name;
     private Genre genre;
     private String bildUrl;
@@ -20,7 +25,6 @@ public class Kollektiv {
     private String description;
     private List<Integer> bewertungen;
     private double durchschnittsBewertung;
-    private String id;
     private List<Dj> residentDjs;
     private String residentClub;
 
@@ -31,8 +35,6 @@ public class Kollektiv {
         this.genre = genre;
         this.beschreibung = beschreibung;
         this.bildUrl = bildUrl;
-
-        KollektivService.kollektivList.add(this);
         this.id = UUID.randomUUID().toString();
     }
 

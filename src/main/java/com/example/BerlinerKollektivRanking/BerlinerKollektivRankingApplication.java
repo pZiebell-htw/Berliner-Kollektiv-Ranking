@@ -14,9 +14,6 @@ import java.util.List;
 @SpringBootApplication
 public class BerlinerKollektivRankingApplication {
 
-	Dj bitschuBatschu = new Dj("BitschuBatschu", "Trance");
-
-
 	@GetMapping("/startpage")
 	public static void main(String[] args) {
 
