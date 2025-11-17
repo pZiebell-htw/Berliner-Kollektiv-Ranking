@@ -15,17 +15,15 @@ public class Kollektiv {
 
     private String name;
     private Genre genre;
+    private String bildUrl;
     private String beschreibung;
-    private List<Dj> residentDjs;
-    private String residentClub;
     private String description;
     private List<Integer> bewertungen;
     private double durchschnittsBewertung;
     private String id;
-    private String bildUrl;
+    private List<Dj> residentDjs;
+    private String residentClub;
 
-
-    public Kollektiv() {}
 
     public Kollektiv(String name, Genre genre, String bildUrl, String beschreibung) {
 

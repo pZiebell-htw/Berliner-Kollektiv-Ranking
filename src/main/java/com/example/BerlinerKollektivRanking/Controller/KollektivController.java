@@ -5,13 +5,12 @@ import com.example.BerlinerKollektivRanking.Service.KollektivService;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:5173", "https://berliner-kollektiv-ranking-frontend.onrender.com/"} )
+@RequestMapping("/api")
 public class KollektivController {
 
     @GetMapping("/kollektivs")
@@ -33,10 +32,7 @@ public class KollektivController {
 
     @PostMapping("/kollektiv")
     public Kollektiv createKollektiv(@RequestBody Kollektiv kollektiv) {
-
         KollektivService.kollektivList.add(kollektiv);
-
         return kollektiv;
     }
-
 }
