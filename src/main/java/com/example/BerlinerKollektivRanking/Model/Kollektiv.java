@@ -15,27 +15,35 @@ public class Kollektiv {
         Trance, Hardtrance, Techno, Hardtechno, Groove, House, Hardhouse,  Gabber, Hardcore, Hardstyle, Tekk, Hardtekk,
     }
 
-
     private String id;
 
     private String name;
     private Genre genre;
     private String bildUrl;
     private String beschreibung;
-    private String description;
-    private List<Integer> bewertungen;
+
+    //soll als nachsten integriert werden
+    private String soundcloudUrl;
+    private String instagramUrl;
+
+    //soll umgesetzt werden wenn user da sind
     private double durchschnittsBewertung;
+    private List<Integer> bewertungen;
+
+    // wenn später genug zeit ist
     private List<Dj> residentDjs;
     private String residentClub;
 
 
-    public Kollektiv(String name, Genre genre, String bildUrl, String beschreibung) {
+    public Kollektiv(String name, Genre genre, String bildUrl, String soundcloudUrl, String instagramUrl, String beschreibung) {
 
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.genre = genre;
-        this.beschreibung = beschreibung;
         this.bildUrl = bildUrl;
-        this.id = UUID.randomUUID().toString();
+        this.soundcloudUrl = soundcloudUrl;
+        this.instagramUrl = instagramUrl;
+        this.beschreibung = beschreibung;
     }
 
     public List<Dj> getResidentDjs() {
@@ -48,14 +56,6 @@ public class Kollektiv {
 
     public void setBewertungen(List<Integer> bewertungen) {
         this.bewertungen = bewertungen;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setResidentDjs(List<Dj> residentDjs) {
@@ -129,6 +129,22 @@ public class Kollektiv {
 
     public void setBildUrl(String bildUrl) {
         this.bildUrl = bildUrl;
+    }
+
+    public String getSoundcloudUrl() {
+        return soundcloudUrl;
+    }
+
+    public void setSoundcloudUrl(String soundcloudUrl) {
+        this.soundcloudUrl = soundcloudUrl;
+    }
+
+    public String getInstagramUrl() {
+        return instagramUrl;
+    }
+
+    public void setInstagramUrl(String instagramUrl) {
+        this.instagramUrl = instagramUrl;
     }
 
     public void addBewertung(int newBewertung) {
