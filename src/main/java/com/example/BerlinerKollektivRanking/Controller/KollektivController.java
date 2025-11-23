@@ -18,6 +18,14 @@ public class KollektivController {
         return KollektivService.kollektivList;
     }
 
+    @GetMapping("/kollektivs/{id}")
+    public Kollektiv getKollektivById(@PathVariable String id) {
+        return KollektivService.kollektivList.stream()
+                .filter(k -> k.getId().equals(id))
+                .findFirst()
+                .orElse(null); // oder wirf 404
+    }
+
     @GetMapping("/rankedKollektivs")
     public List<Kollektiv> rankedKollektivs() {
         KollektivService.kollektivList.sort(Comparator.comparing(Kollektiv::getDurchschnittsBewertung).reversed());
