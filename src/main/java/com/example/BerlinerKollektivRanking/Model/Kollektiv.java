@@ -21,10 +21,10 @@ public class Kollektiv {
     private Genre genre;
     private String bildUrl;
     private String beschreibung;
-
-    //soll als nachsten integriert werden
     private String soundcloudUrl;
     private String instagramUrl;
+    private String DjName;
+    private List<String> alleDjsNames;
 
     //soll umgesetzt werden wenn user da sind
     private double durchschnittsBewertung;
@@ -145,6 +145,23 @@ public class Kollektiv {
 
     public void setInstagramUrl(String instagramUrl) {
         this.instagramUrl = instagramUrl;
+    }
+
+    public List<String> getAlleDjsNames() {
+        return alleDjsNames;
+    }
+
+    public void setAlleDjsNames(List<String> alleDjsNames) {
+        this.alleDjsNames = alleDjsNames;
+    }
+
+    public String getDjName() {
+        return DjName;
+    }
+
+
+    public void setDjName(String djName) {
+        DjName = djName;
     }
 
     public void addBewertung(int newBewertung) {
