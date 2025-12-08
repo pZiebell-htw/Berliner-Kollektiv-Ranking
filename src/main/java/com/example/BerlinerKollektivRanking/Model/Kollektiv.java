@@ -1,9 +1,8 @@
 package com.example.BerlinerKollektivRanking.Model;
 
 import com.example.BerlinerKollektivRanking.Service.KollektivService;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +18,7 @@ public class Kollektiv {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String name;
