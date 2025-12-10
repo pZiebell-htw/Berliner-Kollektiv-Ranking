@@ -13,15 +13,15 @@ public class KollektivService {
     @Autowired
     private KollektivRepository repo;
 
-    public Kollektiv save(Kollektiv kollektiv){
+    public Kollektiv save(Kollektiv kollektiv) {
         return repo.save(kollektiv);
     }
 
-    public Kollektiv getById(String id){
+    public Kollektiv get(Long id) {
         return repo.findById(id).orElseThrow(() -> new RuntimeException("Kollektiv nicht gefunden"));
     }
 
-    public List<Kollektiv> getAll(){
-        return repo.findAll();
+    public List<Kollektiv> getAll() {
+        return (List<Kollektiv>) repo.findAll();
     }
 }

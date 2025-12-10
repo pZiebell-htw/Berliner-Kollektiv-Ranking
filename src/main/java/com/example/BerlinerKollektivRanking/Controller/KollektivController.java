@@ -21,8 +21,8 @@ public class KollektivController {
     }
 
     @GetMapping("/kollektivs/{id}")
-    public Kollektiv getKollektivById(@PathVariable String id) {
-        return service.getById(id);
+    public Kollektiv getKollektivById(@PathVariable Long id) {
+        return service.get(id);
     }
 
     @GetMapping("/rankedKollektivs")
