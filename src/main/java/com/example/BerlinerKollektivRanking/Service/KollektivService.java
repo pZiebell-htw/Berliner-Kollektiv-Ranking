@@ -1,28 +1,27 @@
 package com.example.BerlinerKollektivRanking.Service;
 
-import com.example.BerlinerKollektivRanking.Model.Dj;
 import com.example.BerlinerKollektivRanking.Model.Kollektiv;
 import com.example.BerlinerKollektivRanking.Repository.KollektivRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class KollektivService {
 
     @Autowired
-    KollektivRepository repo;
+    private KollektivRepository repo;
 
     public Kollektiv save(Kollektiv kollektiv){
         return repo.save(kollektiv);
     }
 
-    public Kollektiv get(String id){
-        return repo.findById(id).orElseThrow(() -> new RuntimeException());
+    public Kollektiv getById(String id){
+        return repo.findById(id).orElseThrow(() -> new RuntimeException("Kollektiv nicht gefunden"));
     }
 
-    public static List<Kollektiv> kollektivList = new ArrayList<>();
-
+    public List<Kollektiv> getAll(){
+        return repo.findAll();
+    }
 }
