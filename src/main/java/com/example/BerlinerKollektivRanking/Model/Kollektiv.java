@@ -42,18 +42,6 @@ public class Kollektiv {
     //private String residentClub;
 
 
-    public Kollektiv(String name, Genre genre, String bildUrl, String soundcloudUrl, String instagramUrl, String beschreibung) {
-
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.genre = genre;
-        this.bildUrl = bildUrl;
-        this.soundcloudUrl = soundcloudUrl;
-        this.instagramUrl = instagramUrl;
-        this.beschreibung = beschreibung;
-    }
-
-
 
     public List<Integer> getBewertungen() {
         return bewertungen;
