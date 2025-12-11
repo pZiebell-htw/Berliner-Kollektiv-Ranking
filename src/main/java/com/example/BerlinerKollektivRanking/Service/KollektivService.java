@@ -11,34 +11,33 @@ import java.util.Optional;
 @Service
 public class KollektivService {
 
-    private final KollektivRepository repository;
+    private final KollektivRepository kollektivRepository;
 
-    public KollektivService(KollektivRepository repository) {
-        this.repository = repository;
+    public KollektivService(KollektivRepository kollektivRepository) {
+        this.kollektivRepository = kollektivRepository;
     }
 
-    public List<Kollektiv> getAll() {
-        return repository.findAll();
+    public List<Kollektiv> getAllKollektivs() {
+        return kollektivRepository.findAll();
     }
 
-    public Optional<Kollektiv> getById(Long id) {
-        return repository.findById(id);
+    public Optional<Kollektiv> getKollektivById(Long id) {
+        return kollektivRepository.findById(id);
     }
 
-    public Kollektiv save(Kollektiv kollektiv) {
-        return repository.save(kollektiv);
+    public Kollektiv saveKollektiv(Kollektiv kollektiv) {
+        return kollektivRepository.save(kollektiv);
     }
 
-    public List<Kollektiv> getRanked() {
-        List<Kollektiv> list = repository.findAll();
-        list.sort(Comparator.comparing(Kollektiv::getDurchschnittsBewertung).reversed());
-        return list;
+    public List<Kollektiv> getRankedKollektivs() {
+        List<Kollektiv> kollektivs = kollektivRepository.findAll();
+        kollektivs.sort(Comparator.comparing(Kollektiv::getDurchschnittsBewertung).reversed());
+        return kollektivs;
     }
 
-    public List<Kollektiv> getSortedByGenre() {
-        List<Kollektiv> list = repository.findAll();
-        list.sort(Comparator.comparing(Kollektiv::getGenre));
-        return list;
+    public List<Kollektiv> getSortedByGenreKollektivs() {
+        List<Kollektiv> kollektivs = kollektivRepository.findAll();
+        kollektivs.sort(Comparator.comparing(Kollektiv::getGenre));
+        return kollektivs;
     }
 }
-

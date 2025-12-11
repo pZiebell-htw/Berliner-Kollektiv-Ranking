@@ -10,34 +10,34 @@ import java.util.List;
 @RequestMapping("/api")
 public class KollektivController {
 
-    private final KollektivService service;
+    private final KollektivService kollektivService;
 
-    public KollektivController(KollektivService service) {
-        this.service = service;
+    public KollektivController(KollektivService kollektivService) {
+        this.kollektivService = kollektivService;
     }
 
     @GetMapping("/kollektivs")
     public List<Kollektiv> getAllKollektivs() {
-        return service.getAll();
+        return kollektivService.getAllKollektivs();
     }
 
     @GetMapping("/kollektivs/{id}")
     public Kollektiv getKollektivById(@PathVariable Long id) {
-        return service.getById(id).orElse(null);
-    }
-
-    @GetMapping("/rankedKollektivs")
-    public List<Kollektiv> rankedKollektivs() {
-        return service.getRanked();
-    }
-
-    @GetMapping("/sortedByGenreKollektivs")
-    public List<Kollektiv> sortedByGenreKollektivs() {
-        return service.getSortedByGenre();
+        return kollektivService.getKollektivById(id).orElse(null);
     }
 
     @PostMapping("/kollektiv")
     public Kollektiv createKollektiv(@RequestBody Kollektiv kollektiv) {
-        return service.save(kollektiv);
+        return kollektivService.saveKollektiv(kollektiv);
+    }
+
+    @GetMapping("/rankedKollektivs")
+    public List<Kollektiv> getRankedKollektivs() {
+        return kollektivService.getRankedKollektivs();
+    }
+
+    @GetMapping("/sortedByGenreKollektivs")
+    public List<Kollektiv> getSortedByGenreKollektivs() {
+        return kollektivService.getSortedByGenreKollektivs();
     }
 }
