@@ -23,7 +23,7 @@ public class KollektivController {
         return KollektivService.kollektivList.stream()
                 .filter(k -> k.getId().equals(id))
                 .findFirst()
-                .orElse(null); // oder wirf 404
+                .orElse(null);
     }
 
     @GetMapping("/rankedKollektivs")
