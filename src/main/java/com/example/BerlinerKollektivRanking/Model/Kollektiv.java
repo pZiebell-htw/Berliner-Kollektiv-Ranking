@@ -1,16 +1,14 @@
 package com.example.BerlinerKollektivRanking.Model;
 
-import com.example.BerlinerKollektivRanking.Service.KollektivService;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 public class Kollektiv {
 
-    public enum Genre{
-        Trance, Hardtrance, Techno, Hardtechno, Groove, House, Hardhouse, Gabber, Hardcore, Hardstyle, Tekk, Hardtekk,
+    public enum Genre {
+        Trance, Hardtrance, Techno, Hardtechno, Groove, House, Hardhouse, Gabber, Hardcore, Hardstyle, Tekk, Hardtekk
     }
 
     @Id
@@ -18,150 +16,74 @@ public class Kollektiv {
     private Long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Genre genre;
+
     private String bildUrl;
     private String beschreibung;
     private String soundcloudUrl;
     private String instagramUrl;
-    private String DjName;
 
-    @ElementCollection
-    private List<String> alleDjsNames;
+    // ----------------- Collections auf EAGER setzen -----------------
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "kollektiv_alle_djs_names")
+    private List<String> alleDjsNames = new ArrayList<>();
 
-    //soll umgesetzt werden wenn user da sind
     private double durchschnittsBewertung;
 
-    @ElementCollection
-    private List<Integer> bewertungen;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "kollektiv_bewertungen")
+    private List<Integer> bewertungen = new ArrayList<>();
 
     private String residentClub;
 
-    /*
-    public Kollektiv(String name, Genre genre, String bildUrl, String soundcloudUrl, String instagramUrl, String beschreibung) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.genre = genre;
-        this.bildUrl = bildUrl;
-        this.soundcloudUrl = soundcloudUrl;
-        this.instagramUrl = instagramUrl;
-        this.beschreibung = beschreibung;
-    }
+    // ----------------- Getter & Setter -----------------
 
-     */
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
+    public Genre getGenre() { return genre; }
+    public void setGenre(Genre genre) { this.genre = genre; }
 
-    public List<Integer> getBewertungen() {
-        return bewertungen;
-    }
+    public String getBildUrl() { return bildUrl; }
+    public void setBildUrl(String bildUrl) { this.bildUrl = bildUrl; }
 
-    public void setBewertungen(List<Integer> bewertungen) {
-        this.bewertungen = bewertungen;
-    }
+    public String getBeschreibung() { return beschreibung; }
+    public void setBeschreibung(String beschreibung) { this.beschreibung = beschreibung; }
 
+    public String getSoundcloudUrl() { return soundcloudUrl; }
+    public void setSoundcloudUrl(String soundcloudUrl) { this.soundcloudUrl = soundcloudUrl; }
 
-    public double getDurchschnittsBewertung() {
-        return durchschnittsBewertung;
-    }
+    public String getInstagramUrl() { return instagramUrl; }
+    public void setInstagramUrl(String instagramUrl) { this.instagramUrl = instagramUrl; }
 
-    public void setDurchschnittsBewertung(double durchschnittsBewertung) {
-        this.durchschnittsBewertung = durchschnittsBewertung;
-    }
+    public List<String> getAlleDjsNames() { return alleDjsNames; }
+    public void setAlleDjsNames(List<String> alleDjsNames) { this.alleDjsNames = alleDjsNames; }
 
-    public String getName() {
-        return name;
-    }
+    public double getDurchschnittsBewertung() { return durchschnittsBewertung; }
+    public void setDurchschnittsBewertung(double durchschnittsBewertung) { this.durchschnittsBewertung = durchschnittsBewertung; }
 
-    public String getResidentClub() {
-        return residentClub;
-    }
+    public List<Integer> getBewertungen() { return bewertungen; }
+    public void setBewertungen(List<Integer> bewertungen) { this.bewertungen = bewertungen; }
 
-    public Genre getGenre() {
-        return genre;
-    }
+    public String getResidentClub() { return residentClub; }
+    public void setResidentClub(String residentClub) { this.residentClub = residentClub; }
 
-
-
-    public void setResidentClub(String residentClub) {
-        this.residentClub = residentClub;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
-
-    public String getBildUrl() {
-        return bildUrl;
-    }
-
-    public void setBildUrl(String bildUrl) {
-        this.bildUrl = bildUrl;
-    }
-
-    public String getSoundcloudUrl() {
-        return soundcloudUrl;
-    }
-
-    public void setSoundcloudUrl(String soundcloudUrl) {
-        this.soundcloudUrl = soundcloudUrl;
-    }
-
-    public String getInstagramUrl() {
-        return instagramUrl;
-    }
-
-    public void setInstagramUrl(String instagramUrl) {
-        this.instagramUrl = instagramUrl;
-    }
-
-    public List<String> getAlleDjsNames() {
-        return alleDjsNames;
-    }
-
-    public void setAlleDjsNames(List<String> alleDjsNames) {
-        this.alleDjsNames = alleDjsNames;
-    }
-
-    public String getDjName() {
-        return DjName;
-    }
-
-    public void setDjName(String djName) {
-        DjName = djName;
-    }
+    // ----------------- Hilfsmethoden -----------------
 
     public void addBewertung(int newBewertung) {
         this.bewertungen.add(newBewertung);
-        setDurchschnittsBewertung(calculateDurchschnittBeweertung(bewertungen));
+        setDurchschnittsBewertung(calculateDurchschnittBewertung(this.bewertungen));
     }
 
-    public double calculateDurchschnittBeweertung(List<Integer> bewertung) {
-        double gesamt = 0;
-        for (int i = 0; i < bewertung.size(); i++) {
-            gesamt += bewertung.get(i);
-        }
-        return gesamt / bewertung.size();
+    private double calculateDurchschnittBewertung(List<Integer> bewertungen) {
+        if (bewertungen.isEmpty()) return 0;
+        double sum = 0;
+        for (Integer b : bewertungen) { sum += b; }
+        return sum / bewertungen.size();
     }
 }
