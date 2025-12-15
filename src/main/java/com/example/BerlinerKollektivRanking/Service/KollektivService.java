@@ -41,4 +41,3 @@ public class KollektivService {
         return list;
     }
 }
-

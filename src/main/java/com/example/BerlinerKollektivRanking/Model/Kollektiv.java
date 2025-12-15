@@ -34,9 +34,6 @@ public class Kollektiv {
     @ElementCollection
     private List<Integer> bewertungen;
 
-    // wenn später genug zeit ist
-    //@ElementCollection
-    //private List<Dj> residentDjs;
     private String residentClub;
 
     /*
@@ -52,9 +49,7 @@ public class Kollektiv {
 
      */
 
-    //public List<Dj> getResidentDjs() {
-      //  return residentDjs;
-    //}
+
 
     public List<Integer> getBewertungen() {
         return bewertungen;
@@ -64,11 +59,6 @@ public class Kollektiv {
         this.bewertungen = bewertungen;
     }
 
-    /*public void setResidentDjs(List<Dj> residentDjs) {
-        this.residentDjs = residentDjs;
-    }
-
-     */
 
     public double getDurchschnittsBewertung() {
         return durchschnittsBewertung;
@@ -90,15 +80,7 @@ public class Kollektiv {
         return genre;
     }
 
-    /*public List<Dj> getResidentDJs() {
-        return residentDjs;
-    }
 
-    public void setResidentDJs(List<Dj> residentDjs) {
-        this.residentDjs = residentDjs;
-    }
-
-     */
 
     public void setResidentClub(String residentClub) {
         this.residentClub = residentClub;
@@ -120,11 +102,7 @@ public class Kollektiv {
         this.id = id;
     }
 
-    /*public void addResidentDJ(Dj newDj) {
-        this.residentDjs.add(newDj);
-    }
 
-     */
 
     public String getBeschreibung() {
         return beschreibung;
