@@ -25,6 +25,7 @@ public class Kollektiv {
     private String soundcloudUrl;
     private String instagramUrl;
 
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "kollektiv_alle_djs_names")
     private List<String> alleDjsNames = new ArrayList<>();
