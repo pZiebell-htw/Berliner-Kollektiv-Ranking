@@ -29,6 +29,10 @@ public class KollektivService {
         return kollektivRepository.save(kollektiv);
     }
 
+    public void deleteKollektivById(Long id) {
+        kollektivRepository.deleteById(id);
+    }
+
     public List<Kollektiv> getRankedKollektivs() {
         List<Kollektiv> kollektivs = kollektivRepository.findAll();
         kollektivs.sort(Comparator.comparing(Kollektiv::getDurchschnittsBewertung).reversed());

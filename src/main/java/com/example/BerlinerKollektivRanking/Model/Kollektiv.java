@@ -25,7 +25,6 @@ public class Kollektiv {
     private String soundcloudUrl;
     private String instagramUrl;
 
-    // ----------------- Collections auf EAGER setzen -----------------
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "kollektiv_alle_djs_names")
     private List<String> alleDjsNames = new ArrayList<>();
@@ -38,7 +37,6 @@ public class Kollektiv {
 
     private String residentClub;
 
-    // ----------------- Getter & Setter -----------------
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -73,7 +71,6 @@ public class Kollektiv {
     public String getResidentClub() { return residentClub; }
     public void setResidentClub(String residentClub) { this.residentClub = residentClub; }
 
-    // ----------------- Hilfsmethoden -----------------
 
     public void addBewertung(int newBewertung) {
         this.bewertungen.add(newBewertung);

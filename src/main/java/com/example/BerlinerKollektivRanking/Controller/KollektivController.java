@@ -31,6 +31,11 @@ public class KollektivController {
         return kollektivService.saveKollektiv(kollektiv);
     }
 
+    @DeleteMapping("/kollektivs/{id}")
+    public void deleteKollektivById(@PathVariable Long id) {
+        kollektivService.deleteKollektivById(id);
+    }
+
     @GetMapping("/rankedKollektivs")
     public List<Kollektiv> getRankedKollektivs() {
         return kollektivService.getRankedKollektivs();
