@@ -1,8 +1,11 @@
 package com.example.BerlinerKollektivRanking.Service;
 
 import com.example.BerlinerKollektivRanking.Model.Kollektiv;
+import com.example.BerlinerKollektivRanking.Model.User;
 import com.example.BerlinerKollektivRanking.Repository.KollektivRepository;
+import com.example.BerlinerKollektivRanking.Repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -12,20 +15,33 @@ import java.util.Optional;
 public class KollektivService {
 
     private final KollektivRepository kollektivRepository;
+    private final UserRepository userRepository; // <- Inject this
 
-    public KollektivService(KollektivRepository kollektivRepository) {
+    public KollektivService(KollektivRepository kollektivRepository, UserRepository userRepository) {
         this.kollektivRepository = kollektivRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Kollektiv> getAllKollektivs() {
         return kollektivRepository.findAll();
     }
 
-    public Optional<Kollektiv> getKollektivById(Long id) { return kollektivRepository.findById(id);}
+    public Optional<Kollektiv> getKollektivById(Long id) {
+        return kollektivRepository.findById(id);
+    }
 
-    public Kollektiv saveKollektiv(Kollektiv kollektiv) { return kollektivRepository.save(kollektiv);}
+    @Transactional
+    public Kollektiv saveKollektiv(Kollektiv kollektiv, Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
 
-    public void deleteKollektivById(Long id) { kollektivRepository.deleteById(id); }
+        kollektiv.setUser(user);
+        return kollektivRepository.save(kollektiv);
+    }
+
+    public void deleteKollektivById(Long id) {
+        kollektivRepository.deleteById(id);
+    }
 
     public List<Kollektiv> getRankedKollektivs() {
         List<Kollektiv> kollektivs = kollektivRepository.findAll();
@@ -45,4 +61,3 @@ public class KollektivService {
         return kollektivs;
     }
 }
-

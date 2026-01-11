@@ -1,40 +1,47 @@
 package com.example.BerlinerKollektivRanking.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "\"user\"")
 public class User {
 
-    //
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-
+    //connection
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Kollektiv> kollektivs = new ArrayList<>();
 
-    public List<Kollektiv> getKollektivs() {
-        return kollektivs;
+    public User(String fsdfsd, String asdasd, String asdasd1) {
     }
 
-    public void setKollektivs(List<Kollektiv> kollektivs) {
-        this.kollektivs = kollektivs;
+    public User() {
     }
+
 
     public void addKollektiv(Kollektiv kollektiv) {
         kollektivs.add(kollektiv);
         kollektiv.setUser(this);
     }
+    //
+
+    //login
+
 
     //
 
+
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     private String name;

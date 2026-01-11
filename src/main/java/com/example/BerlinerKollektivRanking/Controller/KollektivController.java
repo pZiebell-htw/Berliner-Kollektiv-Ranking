@@ -26,9 +26,10 @@ public class KollektivController {
         return kollektivService.getKollektivById(id).orElse(null);
     }
 
-    @PostMapping("/kollektiv")
-    public Kollektiv createKollektiv(@RequestBody Kollektiv kollektiv) {
-        return kollektivService.saveKollektiv(kollektiv);
+    @PostMapping("/createKollektiv")
+    public Kollektiv createKollektiv(@RequestBody Kollektiv kollektiv,
+                                     @RequestParam Long userId) {
+        return kollektivService.saveKollektiv(kollektiv, userId);
     }
 
     @DeleteMapping("/kollektivs/{id}")
@@ -41,9 +42,14 @@ public class KollektivController {
         return kollektivService.getRankedKollektivs();
     }
 
-    @GetMapping("/kollektivs/genre/{genre}")
-    public List<Kollektiv> getByGenre(@PathVariable Kollektiv.Genre genre) {
-        return kollektivService.getKollektivsByGenre(genre);
+    // genre als RequestParam, optional
+    @GetMapping("/kollektivs/genre")
+    public List<Kollektiv> getByGenre(@RequestParam(required = false) Kollektiv.Genre genre) {
+        if (genre != null) {
+            return kollektivService.getKollektivsByGenre(genre);
+        } else {
+            return kollektivService.getAllKollektivs();
+        }
     }
 
     @GetMapping("/kollektivs/user/{userId}")
