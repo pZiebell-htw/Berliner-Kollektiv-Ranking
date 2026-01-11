@@ -41,8 +41,13 @@ public class KollektivController {
         return kollektivService.getRankedKollektivs();
     }
 
-    @GetMapping("/sortedByGenreKollektivs")
-    public List<Kollektiv> getSortedByGenreKollektivs() {
-        return kollektivService.getSortedByGenreKollektivs();
+    @GetMapping("/kollektivs/genre/{genre}")
+    public List<Kollektiv> getByGenre(@PathVariable Kollektiv.Genre genre) {
+        return kollektivService.getKollektivsByGenre(genre);
+    }
+
+    @GetMapping("/kollektivs/user/{userId}")
+    public List<Kollektiv> getByUser(@PathVariable Long userId) {
+        return kollektivService.getKollektivsByUserId(userId);
     }
 }
