@@ -42,7 +42,6 @@ public class KollektivController {
         return kollektivService.getRankedKollektivs();
     }
 
-    // genre als RequestParam, optional
     @GetMapping("/kollektivs/genre")
     public List<Kollektiv> getByGenre(@RequestParam(required = false) Kollektiv.Genre genre) {
         if (genre != null) {
