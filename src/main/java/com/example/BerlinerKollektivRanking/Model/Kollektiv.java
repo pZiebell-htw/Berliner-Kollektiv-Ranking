@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "\"kollektiv\"")
 public class Kollektiv {
 
     //
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public User getUser() {
@@ -52,9 +53,14 @@ public class Kollektiv {
 
     private double durchschnittsBewertung;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "kollektiv_bewertungen")
-    private List<Integer> bewertungen = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "kollektiv",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Bewertung> bewertungen = new ArrayList<>();
+
 
     private String residentClub;
 
@@ -86,22 +92,33 @@ public class Kollektiv {
     public double getDurchschnittsBewertung() { return durchschnittsBewertung; }
     public void setDurchschnittsBewertung(double durchschnittsBewertung) { this.durchschnittsBewertung = durchschnittsBewertung; }
 
-    public List<Integer> getBewertungen() { return bewertungen; }
-    public void setBewertungen(List<Integer> bewertungen) { this.bewertungen = bewertungen; }
+    public List<Bewertung> getBewertungen() {
+        return bewertungen;
+    }
 
     public String getResidentClub() { return residentClub; }
     public void setResidentClub(String residentClub) { this.residentClub = residentClub; }
 
 
-    public void addBewertung(int newBewertung) {
-        this.bewertungen.add(newBewertung);
-        setDurchschnittsBewertung(calculateDurchschnittBewertung(this.bewertungen));
+    public void addBewertung(Bewertung bewertung) {
+        bewertungen.add(bewertung);
+        bewertung.setKollektiv(this);
+        updateDurchschnittsBewertung();
     }
 
-    private double calculateDurchschnittBewertung(List<Integer> bewertungen) {
-        if (bewertungen.isEmpty()) return 0;
-        double sum = 0;
-        for (Integer b : bewertungen) { sum += b; }
-        return sum / bewertungen.size();
+
+    public void updateDurchschnittsBewertung() {
+        if (bewertungen.isEmpty()) {
+            this.durchschnittsBewertung = 0;
+            return;
+        }
+
+        double summe = 0;
+        for (Bewertung b : bewertungen) {
+            summe += b.getBewertung(); // oder getSterne()
+        }
+
+        this.durchschnittsBewertung = summe / bewertungen.size();
     }
+
 }

@@ -52,5 +52,7 @@ public class UserController {
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id).orElse(null);
     }
+
+
 }
 
