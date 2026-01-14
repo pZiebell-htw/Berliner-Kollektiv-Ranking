@@ -5,27 +5,31 @@ import jakarta.persistence.*;
 
 
 @Entity
+@Table(
+        name = "bewertung",
+        uniqueConstraints = @UniqueConstraint(
+                columnNames = {"user_id", "kollektiv_id"}
+        )
+)
 public class Bewertung {
 
-
-    public Bewertung() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bewertung_id")
     private Long id;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kollektiv_id")
+    @JoinColumn(name = "kollektiv_id", nullable = false)
     private Kollektiv kollektiv;
 
+    @Column(nullable = false)
     private int bewertung;
+
 
     public Long getId() {
         return id;

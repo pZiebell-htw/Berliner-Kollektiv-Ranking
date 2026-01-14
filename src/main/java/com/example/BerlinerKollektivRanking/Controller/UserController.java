@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api2")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -20,12 +20,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/createUser")
+    @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         User savedUser = userService.saveUser(user);
@@ -48,7 +48,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id).orElse(null);
     }

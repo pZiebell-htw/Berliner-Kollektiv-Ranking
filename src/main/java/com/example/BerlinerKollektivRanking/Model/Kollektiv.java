@@ -115,7 +115,7 @@ public class Kollektiv {
 
         double summe = 0;
         for (Bewertung b : bewertungen) {
-            summe += b.getBewertung(); // oder getSterne()
+            summe += b.getBewertung();
         }
 
         this.durchschnittsBewertung = summe / bewertungen.size();
