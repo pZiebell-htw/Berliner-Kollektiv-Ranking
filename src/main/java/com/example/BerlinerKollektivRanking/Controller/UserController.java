@@ -1,8 +1,8 @@
 package com.example.BerlinerKollektivRanking.Controller;
 
-import com.example.BerlinerKollektivRanking.Model.Kollektiv;
 import com.example.BerlinerKollektivRanking.Model.User;
 import com.example.BerlinerKollektivRanking.Service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,7 +26,12 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+
+        if (userService.existsByEmail(user.getEmail())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already used!");
+        }
+
         user.setPassword(encoder.encode(user.getPassword()));
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
@@ -34,7 +39,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User loginRequest) {
-
         User user = userService.findByEmail(loginRequest.getEmail()).orElse(null);
         if (user == null) {
             return ResponseEntity.status(401).build();
@@ -52,7 +56,4 @@ public class UserController {
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id).orElse(null);
     }
-
-
 }
-
