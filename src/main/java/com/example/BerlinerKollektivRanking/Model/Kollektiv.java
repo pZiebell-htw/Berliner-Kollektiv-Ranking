@@ -42,7 +42,10 @@ public class Kollektiv {
     private Genre genre;
 
     private String bildUrl;
+
+    @Column(columnDefinition = "TEXT")
     private String beschreibung;
+
     private String soundcloudUrl;
     private String instagramUrl;
 
